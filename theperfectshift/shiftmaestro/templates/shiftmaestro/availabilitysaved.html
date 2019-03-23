@@ -1,0 +1,34 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Generator grafiku</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shiftmaestro/stylesheet.css' %}" />
+  </head>
+
+  <body>
+
+<div class="header">
+    <a class="logo">
+        {% load static %}
+        <img src="{% static 'shiftmaestro/shiftmaestrologo.png' %}">
+    </a>
+    <div class="header-right">
+      <a href="{% url 'index' %}"> Aplikacja do generowania grafiku!</a>
+      <a href="{% url 'availability' %}">Wypelnij dyspozycyjnosc</a>
+      <a href="{% url 'schedule' year month %}">Twoj grafik</a>
+      <a href="{% url 'logout' %}">Wyloguj</a>
+      <br>
+      <a>Witaj, {{user.name}}</a>
+      {% if user.schedulemaker %}
+        <a href="{% url 'schedulemaker' 0 %}"> Edytuj grafik </a>
+      {% endif %}    
+    </div>
+</div>
+
+
+<h1>ZAPISANO dyspozycyjnosc.</h1>
+
+</body>
+</html>

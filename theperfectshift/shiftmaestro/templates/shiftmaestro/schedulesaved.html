@@ -1,0 +1,38 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Generator grafiku</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shiftmaestro/stylesheet.css' %}" />
+  </head>
+
+  <body>
+
+<div class="header">
+    <a class="logo">
+        {% load static %}
+        <img src="{% static 'shiftmaestro/shiftmaestrologo.png' %}"></a>
+    <div class="header-right">
+      <a href="{% url 'index' %}"> Aplikacja do generowania grafiku!</a>
+      <a href="{% url 'availability' %}">Wypelnij dyspozycyjnosc</a>
+      <a href="{% url 'schedule' year month %}">Twoj grafik</a>
+      <a href="{% url 'logout' %}">Wyloguj</a>
+      {% if user.schedulemaker %}
+      <a href="{% url 'schedulemaker' 0 %}"> Edytuj grafik </a>
+      {% endif %}
+      <br>
+      <a>Witaj, {{user.name}}</a>
+    </div>
+</div>
+<a>Zapisano grafik na {{forday}} dzien przyszlego miesiaca!</a><br>
+<a>{{scheduleday}}</a><br>
+{% if fdoor > nextday %}
+<a class="frame" href="{% url 'schedulemaker' nextday %}">Przejdź do dnia następnego({{nextday}})</a><br>
+{% else %}
+<a> Zapisałeś ostatni dzień miesiąca! </a>
+<a class="frame" href="{% url 'schedule' %}">Przeglądaj grafik </a>
+{% endif %}
+<a class="frame" href="{% url 'schedulemaker' 0 %}">Przejdź do widoku miesięcznego</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Generator grafiku</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shiftmaestro/stylesheet.css' %}" />
+  </head>
+
+  <body>
+
+<div class="header">
+    <a class="logo">
+        {% load static %}
+        <img src="{% static 'shiftmaestro/shiftmaestrologo.png' %}"></a>
+    <div class="header-right">
+      <a> zaloguj się! </>
+      <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+      </form>
+    </div>
+</div>
